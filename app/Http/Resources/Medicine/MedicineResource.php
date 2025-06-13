@@ -14,6 +14,14 @@ class MedicineResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'description'=>$this->description,
+            'dosage'=>$this->dosage,
+            'unit'=>$this->unit,
+            'price'=>$this->price,
+            'stock'=>$this->stock,
+        ];
     }
 }
