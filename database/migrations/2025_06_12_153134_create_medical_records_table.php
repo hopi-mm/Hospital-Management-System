@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('medical_records', function (Blueprint $table) {
-             $table->id();
+            $table->id();
             $table->foreignId('appointment_id')->constrained()->onDelete('cascade');
-            $table->foreignId('record_types_id')->constrained()->onDelete('cascade');
+            $table->foreignId('record_type_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description');
             $table->timestamps();

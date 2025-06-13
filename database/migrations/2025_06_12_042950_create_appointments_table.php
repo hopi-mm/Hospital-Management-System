@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
-            $table->foreignId('doctor_detail_id')->constrained()->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained('users')->cascadeOnDelete();
             $table->date('stat_date');
             $table->time('start_time');
-             $table->date(column: 'end_date')->nullable();
+            $table->date(column: 'end_date')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

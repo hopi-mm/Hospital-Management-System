@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mr_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('mr_id')->constrained('medical_records')->onDelete('cascade');
             $table->json('additional_fee')->nullable();
-            $table->integer('amount');
+            $table->decimal('amount', 10, 2)->nullable();
             $table->enum('status',['paid','unpaid'])->default('unpaid');
             $table->string('payment_method');
             $table->date('due_date');

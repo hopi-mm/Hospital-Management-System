@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
-            $table->string('mediable')->nullable();
+            $table->morphs('mediable');
             $table->string('path')->nullable();
             $table->timestamps();
         });
