@@ -11,6 +11,7 @@ class DoctorDetail extends Model
         'user_id',
         'speciality',
         'experience',
+        'availability',
         'education',
         'license_number',
     ];
@@ -18,16 +19,11 @@ class DoctorDetail extends Model
     protected $casts = [
         'speciality'  => 'json',
         'experience'   => 'json',
+        'availability' => 'json',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-//$table->foreignId('user_id')->constrained()->onDelete('cascade');
-//$table->json('speciality')->nullable();
-//$table->json('experience')->nullable();
-//$table->string('education')->nullable();
-//$table->string('license_number')->nullable();
 }
