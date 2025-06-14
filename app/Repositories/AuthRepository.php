@@ -24,9 +24,9 @@ class AuthRepository implements AuthInterface
         return false;
     }
 
-    public function logout(LogoutRequest $request)
+    public function logout($request)
     {
-        \Auth::logout();
+        auth()->guard('web')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

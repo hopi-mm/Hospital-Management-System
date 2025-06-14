@@ -22,7 +22,7 @@ class AuthController extends Controller
             $success = $this->authRepository->login($data);
 
             if (!$success) {
-                return $this->fail('Invalid credentials', '', 'Unauthorized', 401);
+                return $this->fail('Invalid credentials', '', 'Unauthorized', 422);
             }
 
             return $this->success(

@@ -28,9 +28,4 @@ class LogoutRequest extends FormRequest
             //
         ];
     }
-
-    public function failedAuthorization()
-    {
-        throw new \HttpResponseException($this->fail('fail', [], 'Failed to authorize', 401));
-    }
 }
