@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Medicine;
+namespace App\Http\Requests\RecordType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMedicineRequest extends FormRequest
+class StoreRecordTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,7 @@ class UpdateMedicineRequest extends FormRequest
     {
         return [
             'name'=>'required|string',
-            'description'=>'required|string',
-            'dosage'=>'required|string',
-            'unit'=>'required|string',
-            'price'=>'required|numeric',
-            'stock'=>'required|numeric',
-            'expired_at'=>'required|date',
+            'description'=>'required|string'
         ];
     }
 }
