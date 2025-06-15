@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories\Medicine;
+namespace App\Repositories\Medicine;
 
 use App\Models\Medicine;
 

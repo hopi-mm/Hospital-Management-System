@@ -14,6 +14,7 @@ class Medicine extends Model
         'unit',
         'price',
         'stock',
+        'expired_at'
     ];
 
     protected $casts = [

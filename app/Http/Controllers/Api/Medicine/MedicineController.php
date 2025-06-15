@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\Medicine;
 
-use App\Http\Requests\Medicine\StoreMedicineRequest;
-use App\Http\Requests\Medicine\UpdateMedicineRequest;
-use App\Http\Resources\Medicine\MedicineResource;
 use App\Models\Medicine;
 use App\Traits\HttpResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\Medicine\MedicineRepository;
+use App\Http\Resources\Medicine\MedicineResource;
+use App\Repositories\Medicine\MedicineRepository;
+use App\Http\Requests\Medicine\StoreMedicineRequest;
+use App\Http\Requests\Medicine\UpdateMedicineRequest;
 
 class MedicineController extends Controller
 {
@@ -46,7 +46,7 @@ class MedicineController extends Controller
     {
         try {
             $medicine = $this->medicineRepo->getById($medicine);
-            return $this->success('success', MedicineResource::make($medicine), 'Medicine Created Successfully', 201);
+            return $this->success('success', MedicineResource::make($medicine), 'Medicine Showed Successfully', 200);
         } catch (\Exception $e) {
             return $this->fail('error', null, $e->getMessage(), 500);
         }
@@ -58,7 +58,7 @@ class MedicineController extends Controller
             $validatedData = $request->validated();
             $medicine = $this->medicineRepo->updateMedicine($validatedData, $medicine);
             $updatedMedicine = $this->medicineRepo->getById($medicine);
-            return $this->success('success', MedicineResource::make($updatedMedicine), 'Medicine Updated Successfully', 201);
+            return $this->success('success', MedicineResource::make($updatedMedicine), 'Medicine Updated Successfully', 200);
         } catch (\Exception $e) {
             return $this->fail('error', null, $e->getMessage(), 500);
         }
