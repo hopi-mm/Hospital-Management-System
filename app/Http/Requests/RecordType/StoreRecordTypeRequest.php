@@ -3,6 +3,8 @@
 namespace App\Http\Requests\RecordType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreRecordTypeRequest extends FormRequest
 {
@@ -25,5 +27,15 @@ class StoreRecordTypeRequest extends FormRequest
             'name'=>'required|string',
             'description'=>'required|string'
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'error',
+            'success' => false,
+            'message' => 'Validation Error',
+            'data' => $validator->errors()
+        ],422));
     }
 }
