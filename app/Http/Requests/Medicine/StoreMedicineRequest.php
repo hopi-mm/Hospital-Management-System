@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Medicine;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreMedicineRequest extends FormRequest
 {
@@ -30,5 +32,15 @@ class StoreMedicineRequest extends FormRequest
             'stock'=>'required|numeric',
             'expired_at'=>'required|date',
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'error',
+            'success' => false,
+            'message' => 'Validation Error',
+            'data' => $validator->errors()
+        ],422));
     }
 }
