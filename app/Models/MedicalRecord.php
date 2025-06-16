@@ -14,6 +14,7 @@ class MedicalRecord extends Model
         'record_type_id',
         'title',
         'description',
+        'total_medicine_price',
     ];
 
     public function appointment(): BelongsTo
@@ -28,6 +29,8 @@ class MedicalRecord extends Model
 
     public function medicines(): BelongsToMany
     {
-        return $this->belongsToMany(Medicine::class,  'mr_medicines',  'mr_id', 'medicine_id');
+        return $this->belongsToMany(Medicine::class,  'mr_medicines',  'mr_id', 'medicine_id')
+                    ->withPivot('quantity')
+                    ->withTimestamps();;
     }
 }
