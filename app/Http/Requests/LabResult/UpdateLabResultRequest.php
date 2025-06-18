@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Medicine;
+namespace App\Http\Requests\LabResult;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreMedicineRequest extends FormRequest
+class UpdateLabResultRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,16 @@ class StoreMedicineRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+
     public function rules(): array
     {
         return [
-            'name'=>'required|string',
-            'description'=>'required|string',
-            'dosage'=>'required|string',
-            'unit'=>'required|string',
-            'price'=>'required|numeric',
-            'stock'=>'required|numeric',
-            'expired_at'=>'required|date',
+            'appointment_id' => 'required|exists:appointments,id',
+            'test_name' => 'required|string|max:255',
+            'result_summary' => 'nullable|string',
+            'detailed_result' => 'nullable|string',
+            'performed_at' => 'required|date',
         ];
     }
 
@@ -41,6 +41,6 @@ class StoreMedicineRequest extends FormRequest
             'success' => false,
             'message' => 'Validation Error',
             'data' => $validator->errors()
-        ],422));
+        ], 422));
     }
 }

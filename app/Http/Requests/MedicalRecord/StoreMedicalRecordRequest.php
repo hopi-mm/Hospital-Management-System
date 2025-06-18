@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Medicine;
+namespace App\Http\Requests\MedicalRecord;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreMedicineRequest extends FormRequest
+class StoreMedicalRecordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,13 @@ class StoreMedicineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|string',
+            'appointment_id'=>'required|exists:appointments,id',
+            'record_type_id'=>'required|exists:record_types,id',
+            'title'=>'required|string',
             'description'=>'required|string',
-            'dosage'=>'required|string',
-            'unit'=>'required|string',
-            'price'=>'required|numeric',
-            'stock'=>'required|numeric',
-            'expired_at'=>'required|date',
+             'medicines' => 'required|array',
+            'medicines.*.medicine_id' => 'required|exists:medicines,id',
+            'medicines.*.quantity' => 'required|integer|min:1',
         ];
     }
 
