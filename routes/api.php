@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\MedicalRecordController;
-use App\Http\Controllers\Api\RecordTypeController;
-use App\Models\MedicalRecord;
 use Illuminate\Http\Request;
+use App\Models\MedicalRecord;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RecordTypeController;
+use App\Http\Controllers\Api\MedicalRecordController;
+use App\Http\Controllers\Api\Patient\PatientController;
 use App\Http\Controllers\Api\Medicine\MedicineController;
 use App\Http\Controllers\Api\LabResult\LabResultController;
 
@@ -18,4 +19,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('record-types', RecordTypeController::class);
     Route::apiResource('medical-records', MedicalRecordController::class);
     Route::apiResource('lab-results', LabResultController::class);
+    Route::apiResource('patient',PatientController::class);
 });
+  
