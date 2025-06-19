@@ -19,10 +19,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('record-types', RecordTypeController::class);
     Route::apiResource('medical-records', MedicalRecordController::class);
     Route::apiResource('lab-results', LabResultController::class);
-<<<<<<< HEAD
     Route::apiResource('appointments', AppointmentController::class);
-=======
     Route::apiResource('patient',PatientController::class);
->>>>>>> f946124991eee1af08418c41f7cc4ac07a089e9d
 });
   
