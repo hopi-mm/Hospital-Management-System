@@ -85,6 +85,7 @@ class PatientController extends Controller
      */
     public function update(UpdatePatientRequest $request, Patient $patient)
     {
+        DB::beginTransaction();
         try{
             $validation_data = $request->validate([
                 'name' => 'required|min:2|max:50',
@@ -98,8 +99,10 @@ class PatientController extends Controller
             ]);
             $PATIENT = $this->patientRepo->updatePatient($validation_data,$patient);
             $updatePatient = $this->patientRepo->getByID($PATIENT);
+            DB::commit();
             return $this->success('success', PatientResource::make($updatePatient),'Patient Updated Successfully!',200);
         }catch(\Exception $e){
+            DB::rollBack();
             return $this->fail('error',null,$e->getMessage(),500);
         }
     }
@@ -109,10 +112,13 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
+        DB::beginTransaction();
         try{
             $deletePatient = $this->patientRepo->deletePatient($patient);
-        return $this->success('success',null, 'Patient Deleted Successfully!',200);
+            DB::commit();
+            return $this->success('success',null, 'Patient Deleted Successfully!',200);
         }catch(\Exception $e){
+            DB::rollBack();
             return $this->fail('error',null,$e->getMessage(),500);
         }
     }
