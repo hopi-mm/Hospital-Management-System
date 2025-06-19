@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Medicine\MedicineController;
 use App\Http\Controllers\Api\LabResult\LabResultController;
-
+use App\Http\Controllers\Api\Appointment\AppointmentController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -18,4 +18,5 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('record-types', RecordTypeController::class);
     Route::apiResource('medical-records', MedicalRecordController::class);
     Route::apiResource('lab-results', LabResultController::class);
+    Route::apiResource('appointments', AppointmentController::class);
 });
