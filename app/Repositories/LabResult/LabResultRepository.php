@@ -24,7 +24,7 @@ class LabResultRepository
     }
 
     public function updateLabResult($data, $labResult)
-    {   
+    {
         $labResult->update($data);
         return $labResult;
     }

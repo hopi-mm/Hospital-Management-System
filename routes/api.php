@@ -20,5 +20,5 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('record-types', RecordTypeController::class);
     Route::apiResource('medical-records', MedicalRecordController::class);
     Route::apiResource('lab-results', LabResultController::class);
-    Route::apiResource('doctor-details', DoctorDetailsController::class);
+    Route::apiResource('doctors', DoctorDetailsController::class);
 });
