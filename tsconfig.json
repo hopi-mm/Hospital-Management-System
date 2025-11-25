@@ -2,7 +2,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["resources/js/*"]
+            "@/*": ["resources/js/*"],
+            "@/lib/utils": ["resources/js/lib/utils.ts"]
         },
         "module": "ESNext",
         "moduleResolution": "nodenext",
